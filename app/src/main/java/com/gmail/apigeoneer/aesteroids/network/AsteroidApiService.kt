@@ -27,7 +27,7 @@ private val retrofit = Retrofit.Builder()
 interface AsteroidApiService {
     // @GET -> specifying the endpoint for the JSON Asteroid response
     @GET("neo/rest/v1/feed?start_date=$START_DATE&end_date=$END_DATE&api_key=$API_KEY")  // Neo-FEED
-    fun getProperties():                  // Request the JSON response string
+    fun getAsteroids():                  // Request the JSON response string
             Call<List<Asteroid>>          // starts the HTTP request
 }
 
