@@ -29,6 +29,10 @@ interface AsteroidApiService {
     @GET("neo/rest/v1/feed?start_date=$START_DATE&end_date=$END_DATE&api_key=$API_KEY")  // Neo-FEED
     fun getAsteroids():                  // Request the JSON response string
             Call<List<Asteroid>>          // starts the HTTP request
+
+//    @GET("planetary/apod?api_key=$API_KEY")
+//    fun getImageOfTheDay():
+//            Call<ImageOfTheDay>
 }
 
 /**

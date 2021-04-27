@@ -29,7 +29,7 @@ class OverviewViewModel: ViewModel() {
     private fun getAsteroids() {
        // _response.value = "Set the Mars API response here!"
 
-        AsteroidApi.retrofitService.getProperties().enqueue(object : Callback<List<Asteroid>> {
+        AsteroidApi.retrofitService.getAsteroids().enqueue(object : Callback<List<Asteroid>> {
             override fun onFailure(call: Call<List<Asteroid>>, t: Throwable) {
                 _response.value = "Failure: " + t.message
             }
