@@ -3,6 +3,10 @@ package com.gmail.apigeoneer.aesteroids.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OverviewViewModel: ViewModel() {
 
@@ -21,6 +25,19 @@ class OverviewViewModel: ViewModel() {
      * Sets the value of the status LiveData to the NASA Asteroid API status
      */
     private fun getMarsRealEstateProperties() {
-        _response.value = "Set the Mars API response here!"
+       // _response.value = "Set the Mars API response here!"
+
+        AsteroidApi.retrofitService.getProperties().enqueue(object : Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                _response.value = "Failure: " + t.message
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                _response.value = response.body()
+            }
+
+        })
     }
+
+
 }
