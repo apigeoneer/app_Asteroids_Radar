@@ -3,7 +3,7 @@ package com.gmail.apigeoneer.aesteroids.detail
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.gmail.apigeoneer.aesteroids.network.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.Asteroid
 import java.lang.IllegalArgumentException
 
 /**

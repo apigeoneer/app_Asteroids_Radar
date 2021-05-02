@@ -2,7 +2,7 @@ package com.gmail.apigeoneer.aesteroids.detail
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.gmail.apigeoneer.aesteroids.network.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.Asteroid
 
 class DetailViewModel(
         @Suppress("UNUSED_PARAMETER")asteroid: Asteroid,

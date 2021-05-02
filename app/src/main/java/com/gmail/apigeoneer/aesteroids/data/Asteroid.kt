@@ -1,4 +1,4 @@
-package com.gmail.apigeoneer.aesteroids.network
+package com.gmail.apigeoneer.aesteroids.data
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
@@ -10,7 +10,9 @@ import kotlinx.android.parcel.Parcelize
  */
 
 data class Asteroid(
-    val id: Double,
+    val id: Long,
+    @Json(name = "name") val codeName: String,
+    @Json(name = "close_approach_date") val closeApproachDate: String,
     @Json(name = "absolute_magnitude") val absMagnitude: Double,
     @Json(name = "estimated_diameter_max") val estDiaMax: Double,
     @Json(name = "is_potentially_hazardous_asteroid") val isHazardous: Boolean,
