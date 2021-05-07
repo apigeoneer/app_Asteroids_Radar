@@ -9,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
  * In order to write an object to a Parcel, that object should implement the interface “Parcelable“.
  */
 
+@Parcelize
 data class Asteroid(
     val id: Long,
     @Json(name = "name") val codeName: String,
@@ -16,6 +17,6 @@ data class Asteroid(
     @Json(name = "absolute_magnitude") val absMagnitude: Double,
     @Json(name = "estimated_diameter_max") val estDiaMax: Double,
     @Json(name = "is_potentially_hazardous_asteroid") val isHazardous: Boolean,
-    @Json(name = "kilometers_per_second") val kmps: Double,
-    val astronomical: Double
-)
+    @Json(name = "kilometers_per_second") val relativeVelocity: Double,
+    @Json(name = "astronomical") val distanceFromEarth: Double
+): Parcelable

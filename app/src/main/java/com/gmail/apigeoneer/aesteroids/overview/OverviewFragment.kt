@@ -15,7 +15,8 @@ class OverviewFragment : Fragment() {
 
     // lazily initialize our [OverviewViewModel]
     private val viewModel: OverviewViewModel by lazy {
-        ViewModelProvider(this).get(OverviewViewModel::class.java)
+        ViewModelProvider(this, OverviewViewModel.Factory(requireActivity().application))
+            .get(OverviewViewModel::class.java)
     }
 
     override fun onCreateView(
