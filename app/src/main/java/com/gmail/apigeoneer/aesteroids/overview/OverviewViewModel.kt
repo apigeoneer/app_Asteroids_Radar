@@ -5,11 +5,13 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.gmail.apigeoneer.aesteroids.api.API_KEY
 import com.gmail.apigeoneer.aesteroids.api.AsteroidApi
-import com.gmail.apigeoneer.aesteroids.data.AsteroidData
+import com.gmail.apigeoneer.aesteroids.api.parseAsteroidsJsonResult
+import com.gmail.apigeoneer.aesteroids.data.Asteroid
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import org.json.JSONObject
+
+
+
 
 class OverviewViewModel(application: Application): AndroidViewModel(application) {
 
@@ -19,9 +21,13 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
     // the internal MutableLiveData String that stores the status of the most recent requests
     // response -> the request status String
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String>
+        get() = _status
+
+    private val _asteroid = MutableLiveData<Asteroid>()
+    val asteroid: LiveData<Asteroid>
+        get() = _asteroid
 
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
@@ -50,11 +56,19 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
         viewModelScope.launch {
             try {
                 val listResult = AsteroidApi.retrofitService.getAsteroids("2021-5-5", "2021-5-6", API_KEY)
-                _response.value = "Success: ${listResult.length} Asteroids retrieved"
+                _status.value = "Success: ${listResult.length} Asteroids retrieved"
+
+                val listResultJSON = JSONObject(listResult)
+                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(listResultJSON)
+
+                if (listResult.isNotEmpty()) {
+                    _asteroid.value = asteroidList[0]
+                }
+
             } catch (e: Exception) {
-                _response.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
-            Log.d(TAG, _response.toString())
+            Log.d(TAG, _status.toString())
         }
     }
 
