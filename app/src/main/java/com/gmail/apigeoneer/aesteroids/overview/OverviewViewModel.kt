@@ -38,9 +38,9 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
      * Sets the value of the status LiveData to the NASA Asteroid API status
      */
     private fun getAsteroids() {
-//         _response.value = "Set the Mars API response here!"
+//         _response.value = "Set the Mars API response here!"                                 // checking for response
 
-//        val asteroid = AsteroidApi.retrofitService.getAsteroids("2019-9-7", "2019-9-8")
+//        val asteroid = AsteroidApi.retrofitService.getAsteroids("2019-9-7", "2019-9-8")      // fetching response w/o Retrofit
 //        asteroid.enqueue(object : Callback<AsteroidData> {
 //
 //            override fun onFailure(call: Call<AsteroidData>, t: Throwable) {
@@ -55,13 +55,14 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
         viewModelScope.launch {
             try {
-                val listResult = AsteroidApi.retrofitService.getAsteroids("2021-5-5", "2021-5-6", API_KEY)
+                val listResult = AsteroidApi.retrofitService.getAsteroids("2021-05-05", "2021-05-06", API_KEY)   // 2021-5-5 WRONG, 2021-05-05 RIGHT
                 _status.value = "Success: ${listResult.length} Asteroids retrieved"
+//                val listResultJSON = JSONObject(listResult)
+//                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(listResultJSON)
 
-                val listResultJSON = JSONObject(listResult)
-                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(listResultJSON)
+                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(JSONObject(listResult)) as ArrayList<Asteroid>
 
-                if (listResult.isNotEmpty()) {
+                if (asteroidList.isNotEmpty()) {
                     _asteroid.value = asteroidList[0]
                 }
 

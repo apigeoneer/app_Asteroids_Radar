@@ -5,9 +5,9 @@
         android:id="@+id/show_all_menu"
         android:title="All" />
     <item
-        android:id="@+id/show_buy_menu"
-        android:title="Buy" />
+        android:id="@+id/show_hazardous_menu"
+        android:title="Hazardous" />
     <item
-        android:id="@+id/show_rent_menu"
-        android:title="Rent" />
+        android:id="@+id/show_non_hazardous_menu"
+        android:title="Non - hazardous" />
 </menu>
