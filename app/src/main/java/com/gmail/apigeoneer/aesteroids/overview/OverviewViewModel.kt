@@ -25,9 +25,9 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     val status: LiveData<String>
         get() = _status
 
-    private val _asteroid = MutableLiveData<Asteroid>()
-    val asteroid: LiveData<Asteroid>
-        get() = _asteroid
+    private val _asteroids = MutableLiveData<List<Asteroid>>()
+    val asteroid: LiveData<List<Asteroid>>
+        get() = _asteroids
 
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
@@ -63,7 +63,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
                 val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(JSONObject(listResult)) as ArrayList<Asteroid>
 
                 if (asteroidList.isNotEmpty()) {
-                    _asteroid.value = asteroidList[0]
+                    _asteroids.value = asteroidList
                 }
 
             } catch (e: Exception) {
