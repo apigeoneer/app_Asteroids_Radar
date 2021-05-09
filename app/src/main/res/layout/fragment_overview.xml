@@ -10,24 +10,21 @@
             type="com.gmail.apigeoneer.aesteroids.overview.OverviewViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/asteroids_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".overview.OverviewFragment">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/asteroids_rv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:itemCount="16"
-            tools:listitem="@layout/asteroid_item"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        tools:itemCount="16"
+        tools:listitem="@layout/asteroid_item"
+        listData="@{viewModel.asteroid}"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".overview.OverviewFragment"/>
 </layout>

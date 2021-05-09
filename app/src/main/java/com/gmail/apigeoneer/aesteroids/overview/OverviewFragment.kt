@@ -32,6 +32,8 @@ class OverviewFragment : Fragment() {
         // Giving the binding access tp the [OverviewViewModel]
         binding.viewModel = viewModel
 
+        binding.asteroidsRv.adapter = AsteroidAdapter()
+
         setHasOptionsMenu(true)
         return binding.root
     }
