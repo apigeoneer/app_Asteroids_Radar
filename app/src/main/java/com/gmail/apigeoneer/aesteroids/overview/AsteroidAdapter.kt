@@ -19,7 +19,7 @@ class AsteroidAdapter : androidx.recyclerview.widget.ListAdapter<Asteroid, Aster
         }
 
         override fun areContentsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.id == newItem.id   //
         }
     }
 
