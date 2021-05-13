@@ -11,8 +11,6 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 
-
-
 class OverviewViewModel(application: Application): AndroidViewModel(application) {
 
     companion object {

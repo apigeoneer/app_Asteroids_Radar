@@ -24,7 +24,7 @@ class AsteroidAdapter : androidx.recyclerview.widget.ListAdapter<Asteroid, Aster
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
-        val view = AsteroidItemBinding.inflate(LayoutInflater.from(parent.context))
+        val view = AsteroidItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return AsteroidViewHolder(view)
     }
 
