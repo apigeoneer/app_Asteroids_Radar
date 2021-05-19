@@ -27,6 +27,12 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     val asteroid: LiveData<List<Asteroid>>
         get() = _asteroids
 
+    // for navigating to the detail screen
+    private val _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
+    val navigateToSelectedAsteroid: LiveData<Asteroid>
+        get() = _navigateToSelectedAsteroid
+
+
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
         getAsteroids()
@@ -71,13 +77,22 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    // initiate navigation to the detail screen
+    fun displayAsteroidDetails(asteroid: Asteroid) {
+        _navigateToSelectedAsteroid.value = asteroid
+    }
+
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroid.value = null
+    }
+
+    class OverviewViewModelFactory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(OverviewViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return OverviewViewModel(app) as T
             }
-            throw IllegalArgumentException("Unable to construct viewmodel")
+            throw IllegalArgumentException("Unable to construct ViewModel")
         }
     }
 
