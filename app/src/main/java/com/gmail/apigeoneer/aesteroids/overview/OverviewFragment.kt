@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.gmail.apigeoneer.aesteroids.R
 import com.gmail.apigeoneer.aesteroids.databinding.FragmentOverviewBinding
+import com.gmail.apigeoneer.aesteroids.detail.DetailViewModel
 
 class OverviewFragment : Fragment() {
 
@@ -14,9 +17,15 @@ class OverviewFragment : Fragment() {
     private lateinit var binding: FragmentOverviewBinding
 
     // lazily initialize our [OverviewViewModel]
-    private val viewModel: OverviewViewModel by lazy {
+    private val overviewViewModel: OverviewViewModel by lazy {
         ViewModelProvider(this, OverviewViewModel.Factory(requireActivity().application))
             .get(OverviewViewModel::class.java)
+    }
+
+    // lazily initialize our [DetailViewModel]
+    private val detailViewModel: DetailViewModel by lazy {
+        ViewModelProvider(this, DetailViewModel.Factory(requireActivity().application))
+                .get(DetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -30,9 +39,19 @@ class OverviewFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Giving the binding access tp the [OverviewViewModel]
-        binding.viewModel = viewModel
+        binding.viewModel = overviewViewModel
 
-        binding.asteroidsRv.adapter = AsteroidAdapter()
+        binding.asteroidsRv.adapter = AsteroidAdapter(AsteroidAdapter.OnClickListener {
+            detailViewModel.displayAsteroidDetails(it)
+        })
+
+        // this observer calls navigate() to go to the detail screen when the MarsProperty is not null
+        detailViewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                detailViewModel.displayAsteroidDetailsComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
         return binding.root
@@ -42,4 +61,5 @@ class OverviewFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
 }
