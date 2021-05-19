@@ -16,8 +16,22 @@ class DetailViewModel(
     val selectedAsteroid: LiveData<Asteroid>
         get() = _selectedAsteroid
 
+    // for navigating to the detail screen
+    private val _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
+    val navigateToSelectedAsteroid: LiveData<Asteroid>
+        get() = _navigateToSelectedAsteroid
+
     init {
         _selectedAsteroid.value = asteroid
+    }
+
+    // initiate navigation to the detail screen
+    fun displayAsteroidDetails(asteroid: Asteroid) {
+        _navigateToSelectedAsteroid.value = asteroid
+    }
+
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroid.value = null
     }
 
 }
