@@ -45,6 +45,7 @@ class OverviewFragment : Fragment() {
             detailViewModel.displayAsteroidDetails(it)
         })
 
+        // this observer calls navigate() to go to the detail screen when the MarsProperty is not null
         detailViewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
