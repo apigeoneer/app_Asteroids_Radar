@@ -36,9 +36,9 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
      * Sets the value of the status LiveData to the NASA Asteroid API status
      */
     private fun getAsteroids() {
-//         _response.value = "Set the Mars API response here!"                                 // checking for response
+//         _response.value = "Set the Mars API response here!"                                      // checking for response
 
-//        val asteroid = AsteroidApi.retrofitService.getAsteroids("2019-9-7", "2019-9-8")      // fetching response w/o Retrofit
+//        val asteroid = AsteroidApi.retrofitService.getAsteroids("2019-9-7", "2019-9-8")           // fetching response w/o Retrofit
 //        asteroid.enqueue(object : Callback<AsteroidData> {
 //
 //            override fun onFailure(call: Call<AsteroidData>, t: Throwable) {
