@@ -1,10 +1,9 @@
 package com.gmail.apigeoneer.aesteroids.detail
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.gmail.apigeoneer.aesteroids.data.Asteroid
+import com.gmail.apigeoneer.aesteroids.overview.OverviewViewModel
 
 class DetailViewModel(
         asteroid: Asteroid,
@@ -32,6 +31,16 @@ class DetailViewModel(
 
     fun displayAsteroidDetailsComplete() {
         _navigateToSelectedAsteroid.value = null
+    }
+
+    class Factory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(OverviewViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return OverviewViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
     }
 
 }
