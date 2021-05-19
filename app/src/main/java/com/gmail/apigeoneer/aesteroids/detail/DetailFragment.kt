@@ -27,7 +27,7 @@ class DetailFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val asteroid = DetailFragmentArgs.fromBundle(requireArguments()).selectedAsteroid
-        val viewModelFactory = DetailViewModelFactory(asteroid, application)
+        val viewModelFactory = DetailViewModel.DetailViewModelFactory(asteroid, application)
         binding.detailViewModel = ViewModelProvider(this,
             viewModelFactory).get(DetailViewModel::class.java)
 
