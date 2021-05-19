@@ -9,6 +9,7 @@ import kotlinx.android.parcel.Parcelize
  * In order to write an object to a Parcel, that object should implement the interface “Parcelable“.
  */
 
+// Make Asteroid parcelable so it can be passed as an argument in navigation
 @Parcelize
 data class Asteroid(
     val id: Long,
