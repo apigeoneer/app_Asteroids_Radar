@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.gmail.apigeoneer.aesteroids.R
 import com.gmail.apigeoneer.aesteroids.databinding.FragmentOverviewBinding
 import com.gmail.apigeoneer.aesteroids.detail.DetailViewModel
@@ -43,6 +45,13 @@ class OverviewFragment : Fragment() {
             detailViewModel.displayAsteroidDetails(it)
         })
 
+        detailViewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                detailViewModel.displayAsteroidDetailsComplete()
+            }
+        })
+
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -51,4 +60,5 @@ class OverviewFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
 }
