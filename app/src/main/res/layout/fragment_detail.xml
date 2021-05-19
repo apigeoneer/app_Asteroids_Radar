@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="detailViewModel"
+            type="com.gmail.apigeoneer.aesteroids.detail.DetailViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,7 +51,7 @@
                     android:textSize="39sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
-                    tools:text="codename_tv" />
+                    tools:text="@{detailViewModel.selectedAsteroid.codeName}" />
 
                 <TextView
                     android:id="@+id/closeApproachDate_tv"
@@ -56,7 +62,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/codename_tv"
-                    tools:text="closeApproachDate_tv" />
+                    tools:text="@{detailViewModel.selectedAsteroid.closeApproachDate}" />
 
                 <TextView
                     android:id="@+id/absMagnitude_tv"
@@ -67,7 +73,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/closeApproachDate_tv"
-                    tools:text="absMagnitude_tv" />
+                    tools:text="@{`` + detailViewModel.selectedAsteroid.absMagnitude}" />
 
                 <TextView
                     android:id="@+id/estDiaMax_tv"
@@ -78,7 +84,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/absMagnitude_tv"
-                    tools:text="estDiaMax_tv" />
+                    tools:text="@{`` + detailViewModel.selectedAsteroid.estDiaMax}" />
 
                 <TextView
                     android:id="@+id/isHazardous_tv"
@@ -89,7 +95,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/estDiaMax_tv"
-                    tools:text="isHazardous_tv" />
+                    tools:text="@{`` + detailViewModel.selectedAsteroid.hazardous}" />
 
                 <TextView
                     android:id="@+id/relativeVelocity_tv"
@@ -100,7 +106,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/isHazardous_tv"
-                    tools:text="relativeVelocity_tv" />
+                    tools:text="@{`` + detailViewModel.selectedAsteroid.relativeVelocity}" />
 
                 <TextView
                     android:id="@+id/distanceFromEarth_tv"
@@ -111,7 +117,7 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/relativeVelocity_tv"
-                    tools:text="distanceFromEarth_tv" />
+                    tools:text="@{`` + detailViewModel.selectedAsteroid.distanceFromEarth}" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
