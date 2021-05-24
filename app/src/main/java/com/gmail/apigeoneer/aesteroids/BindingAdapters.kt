@@ -60,6 +60,8 @@ fun bindPictureOfTheDay(imageView: ImageView, imageUrl: String?) {
         val imageUri = it.toUri().buildUpon().scheme("https").build()
         Picasso.get()
             .load(imageUri)
+            .placeholder(R.drawable.loading_animation)
+            .error(R.drawable.ic_broken_image)
             .into(imageView)
     }
 }
