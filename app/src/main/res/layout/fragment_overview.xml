@@ -20,6 +20,9 @@
             android:id="@+id/picture_of_the_day_fl"
             android:layout_width="0dp"
             android:layout_height="210dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,16 +31,16 @@
                 android:id="@+id/picture_of_the_day_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:contentDescription="NASA Picture of the day" />
+                android:contentDescription="NASA picture of the day"
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:padding="16dp"
-                android:textSize="15sp"
-                android:text="Picture Of The Day"/>
+                android:text="Picture Of The Day"
+                android:textSize="15sp" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

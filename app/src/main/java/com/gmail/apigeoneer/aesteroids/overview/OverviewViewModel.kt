@@ -7,6 +7,7 @@ import com.gmail.apigeoneer.aesteroids.api.API_KEY
 import com.gmail.apigeoneer.aesteroids.api.AsteroidApi
 import com.gmail.apigeoneer.aesteroids.api.parseAsteroidsJsonResult
 import com.gmail.apigeoneer.aesteroids.data.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.PictureOfTheDay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -32,6 +33,9 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     val navigateToSelectedAsteroid: LiveData<Asteroid>
         get() = _navigateToSelectedAsteroid
 
+    private val _pictureOfTheDay = MutableLiveData<PictureOfTheDay>()
+    val pictureOfTheDay: LiveData<PictureOfTheDay>
+        get() = _pictureOfTheDay
 
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
