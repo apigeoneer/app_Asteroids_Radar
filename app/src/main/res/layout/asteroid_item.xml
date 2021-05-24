@@ -17,12 +17,13 @@
         android:layout_marginTop="6dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="6dp"
-        android:background="@android:color/transparent"
+        android:elevation="4dp"
         app:cardCornerRadius="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#1f1f1f">
 
             <TextView
                 android:id="@+id/name_tv"
@@ -31,6 +32,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@{asteroids.codeName}"
+                android:textColor="#f2f2f2"
                 android:textSize="15.5sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +45,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@{asteroids.closeApproachDate}"
+                android:textColor="#f5f5f5"
                 android:textSize="13.5sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

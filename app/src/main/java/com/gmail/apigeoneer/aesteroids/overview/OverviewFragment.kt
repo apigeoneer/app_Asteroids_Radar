@@ -47,8 +47,16 @@ class OverviewFragment : Fragment() {
             }
         })
 
+        binding.progressBar.visibility = View.VISIBLE
+
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
