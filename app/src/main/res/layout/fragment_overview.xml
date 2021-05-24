@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:padding="16dp"
-                android:text="Picture Of The Day"
+                android:text="@{viewModel.pictureOfTheDay.url}"
                 android:textSize="15sp" />
         </FrameLayout>
 

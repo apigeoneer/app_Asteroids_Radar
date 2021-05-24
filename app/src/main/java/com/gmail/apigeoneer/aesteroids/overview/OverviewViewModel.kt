@@ -5,11 +5,14 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.gmail.apigeoneer.aesteroids.api.API_KEY
 import com.gmail.apigeoneer.aesteroids.api.AsteroidApi
+import com.gmail.apigeoneer.aesteroids.api.PictureOdTheDayService
 import com.gmail.apigeoneer.aesteroids.api.parseAsteroidsJsonResult
 import com.gmail.apigeoneer.aesteroids.data.Asteroid
 import com.gmail.apigeoneer.aesteroids.data.PictureOfTheDay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class OverviewViewModel(application: Application): AndroidViewModel(application) {
@@ -40,6 +43,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
         getAsteroids()
+        getPictureOfTheDay()
     }
 
     /**
@@ -88,6 +92,19 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
     fun displayAsteroidDetailsComplete() {
         _navigateToSelectedAsteroid.value = null
+    }
+
+    private fun getPictureOfTheDay() {
+
+        viewModelScope.launch {
+            try {
+                val pictureOfTheDay = AsteroidApi.pictureOdTheDayService.getPictureOfTheDay(API_KEY)
+                _pictureOfTheDay.value = pictureOfTheDay
+                Log.d(TAG, pictureOfTheDay.url)
+            } catch (e: Exception) {
+                Log.d(TAG, "PictureOfTheDay retrieval unsuccessful: ${e.message}")
+            }
+        }
     }
 
     class OverviewViewModelFactory(val app: Application) : ViewModelProvider.Factory {
