@@ -2,10 +2,13 @@ package com.gmail.apigeoneer.aesteroids
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.apigeoneer.aesteroids.data.Asteroid
 import com.gmail.apigeoneer.aesteroids.overview.AsteroidAdapter
+import com.squareup.picasso.Picasso
+import retrofit2.http.Url
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
@@ -47,4 +50,16 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Asteroid>?) {
     val adapter = recyclerView.adapter as AsteroidAdapter
     adapter.submitList(data)
+}
+
+// Before this, we were only displaying the PictureOfTheDay url
+// here, we convert url -> uri
+@BindingAdapter("url")
+fun bindPictureOfTheDay(imageView: ImageView, imageUrl: String?) {
+    imageUrl?.let {
+        val imageUri = it.toUri().buildUpon().scheme("https").build()
+        Picasso.get()
+            .load(imageUri)
+            .into(imageView)
+    }
 }
