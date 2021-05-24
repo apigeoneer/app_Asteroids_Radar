@@ -59,7 +59,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
         viewModelScope.launch {
             try {
-                val listResult = AsteroidApi.retrofitService.getAsteroids("2021-05-05", "2021-05-06", API_KEY)   // 2021-5-5 WRONG, 2021-05-05 RIGHT
+                val listResult = AsteroidApi.asteroidService.getAsteroids("2021-05-05", "2021-05-06", API_KEY)   // 2021-5-5 WRONG, 2021-05-05 RIGHT
                 _status.value = "Success: ${listResult.length} Asteroids retrieved"
 //                val listResultJSON = JSONObject(listResult)
 //                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(listResultJSON)
