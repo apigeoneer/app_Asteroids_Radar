@@ -1,7 +1,6 @@
 package com.gmail.apigeoneer.aesteroids.api
 
 import com.gmail.apigeoneer.aesteroids.Constants.BASE_URL
-//import com.gmail.apigeoneer.aesteroids.data.AsteroidData
 import com.gmail.apigeoneer.aesteroids.data.PictureOfTheDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

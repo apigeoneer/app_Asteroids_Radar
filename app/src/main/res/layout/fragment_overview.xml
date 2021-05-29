@@ -29,10 +29,9 @@
                 android:id="@+id/picture_of_the_day_iv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#111111"
                 android:contentDescription="NASA picture of the day"
                 android:scaleType="centerCrop"
-                android:background="#767676"
-                app:srcCompat="@drawable/asteroid_hazardous"
                 app:url="@{viewModel.pictureOfTheDay.url}" />
 
             <TextView
