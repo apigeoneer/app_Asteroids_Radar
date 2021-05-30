@@ -2,8 +2,7 @@ package com.gmail.apigeoneer.aesteroids.detail
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
-import com.gmail.apigeoneer.aesteroids.overview.OverviewViewModel
+import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
 
 class DetailViewModel(
         asteroid: Asteroid,

@@ -3,16 +3,13 @@ package com.gmail.apigeoneer.aesteroids.overview
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.gmail.apigeoneer.aesteroids.api.API_KEY
-import com.gmail.apigeoneer.aesteroids.api.AsteroidApi
-import com.gmail.apigeoneer.aesteroids.api.PictureOdTheDayService
-import com.gmail.apigeoneer.aesteroids.api.parseAsteroidsJsonResult
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
-import com.gmail.apigeoneer.aesteroids.data.PictureOfTheDay
+import com.gmail.apigeoneer.aesteroids.network.API_KEY
+import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
+import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
+import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.network.domain.PictureOfTheDay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
-import retrofit2.Callback
-import retrofit2.Response
 
 
 class OverviewViewModel(application: Application): AndroidViewModel(application) {

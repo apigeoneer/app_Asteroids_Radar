@@ -1,4 +1,4 @@
-package com.gmail.apigeoneer.aesteroids.data
+package com.gmail.apigeoneer.aesteroids.network.domain
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

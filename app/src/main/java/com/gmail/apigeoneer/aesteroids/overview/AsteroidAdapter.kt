@@ -1,12 +1,10 @@
 package com.gmail.apigeoneer.aesteroids.overview
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
+import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.databinding.AsteroidItemBinding
 
 class AsteroidAdapter(

@@ -1,8 +1,7 @@
-package com.gmail.apigeoneer.aesteroids.database
+package com.gmail.apigeoneer.aesteroids.network.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
 
 @Entity(tableName = "asteroid_table")
 data class AsteroidEntity constructor(
@@ -15,12 +14,4 @@ data class AsteroidEntity constructor(
         val isHazardous: Boolean,
         val relativeVelocity: Double,
         val distanceFromEarth: Double,
-)
-
-@Entity(tableName = "picture_of_the_day_table")
-data class PictureOfTheDayEntity(
-        @PrimaryKey(autoGenerate = true)
-        val url: String,
-        val mediaType: String,
-        val title: String
 )

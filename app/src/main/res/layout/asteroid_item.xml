@@ -7,7 +7,7 @@
     <data>
         <variable
             name="asteroids"
-            type="com.gmail.apigeoneer.aesteroids.data.Asteroid" />
+            type="com.gmail.apigeoneer.aesteroids.domain.Asteroid" />
     </data>
 
     <androidx.cardview.widget.CardView
