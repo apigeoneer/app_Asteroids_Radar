@@ -4,9 +4,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.gmail.apigeoneer.aesteroids.data.Asteroid
 
-@Entity
-data class DatabaseAsteroid constructor(
-        @PrimaryKey
+@Entity(tableName = "asteroid_table")
+data class AsteroidEntity constructor(
+        @PrimaryKey(autoGenerate = true)
         val id: Long,
         val codeName: String,
         val closeApproachDate: String,
@@ -17,17 +17,10 @@ data class DatabaseAsteroid constructor(
         val distanceFromEarth: Double,
 )
 
-fun List<DatabaseAsteroid>.asDomainModel(): List<Asteroid> {
-    return map {
-        Asteroid(
-                id = it.id,
-                codeName = it.codeName,
-                closeApproachDate = it.closeApproachDate,
-                absMagnitude = it.absMagnitude,
-                estDiaMax = it.estDiaMax,
-                isHazardous = it.isHazardous,
-                relativeVelocity = it.relativeVelocity,
-                distanceFromEarth = it.distanceFromEarth
-        )
-    }
-}
+@Entity(tableName = "picture_of_the_day_table")
+data class PictureOfTheDayEntity(
+        @PrimaryKey(autoGenerate = true)
+        val url: String,
+        val mediaType: String,
+        val title: String
+)
