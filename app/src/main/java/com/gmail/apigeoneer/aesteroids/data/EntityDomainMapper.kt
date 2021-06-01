@@ -1,4 +1,4 @@
-package com.gmail.apigeoneer.aesteroids
+package com.gmail.apigeoneer.aesteroids.data
 
 import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay

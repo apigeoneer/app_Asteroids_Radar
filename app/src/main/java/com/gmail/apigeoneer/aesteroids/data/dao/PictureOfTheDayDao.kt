@@ -13,5 +13,5 @@ interface PictureOfTheDayDao {
     fun getPictureOfTheDay(): LiveData<PictureOfTheDayEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(vararg asteroids: PictureOfTheDayEntity)
+    suspend fun insertAll(vararg pictureOfTheDayEntity: PictureOfTheDayEntity)
 }

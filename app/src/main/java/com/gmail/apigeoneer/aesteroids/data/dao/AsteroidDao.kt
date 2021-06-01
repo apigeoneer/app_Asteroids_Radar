@@ -6,7 +6,7 @@ import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
 
 @Dao
 interface AsteroidDao {
-    @Query("select * from asteroid_table order by date(closeApproachDate) asc")
+    @Query("select * from asteroid_table")
     fun getAsteroids(): LiveData<List<AsteroidEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
