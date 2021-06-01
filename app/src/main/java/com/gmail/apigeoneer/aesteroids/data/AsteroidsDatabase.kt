@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gmail.apigeoneer.aesteroids.data.dao.AsteroidDao
 import com.gmail.apigeoneer.aesteroids.data.dao.PictureOfTheDayDao
+import com.gmail.apigeoneer.aesteroids.data.entities.PictureOfTheDayEntity
 
 /**
  * The Room Database class puts together the Entity & the Dao
  */
-@Database(entities = [AsteroidsDatabase::class], version = 1)
+@Database(entities = [AsteroidsDatabase::class, PictureOfTheDayEntity::class], version = 1)
 abstract class AsteroidsDatabase: RoomDatabase() {
     abstract val asteroidDao: AsteroidDao
     abstract val pictureOfTheDayDao: PictureOfTheDayDao
