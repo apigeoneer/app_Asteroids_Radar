@@ -12,23 +12,65 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#111111">
+
+        <!-- Since we want child Views to overlap each other -->
+        <FrameLayout
+            android:id="@+id/picture_of_the_day_fl"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/picture_of_the_day_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#111111"
+                android:contentDescription="NASA picture of the day"
+                android:scaleType="centerCrop"
+                app:url="@{viewModel.pictureOfTheDay.url}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:padding="16dp"
+                android:text="Picture Of The Day"
+                android:textSize="15sp" />
+        </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/asteroids_rv"
             listData="@{viewModel.asteroid}"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:clipToPadding="false"
-            android:paddingTop="16dp"
+            android:paddingTop="8dp"
             android:paddingBottom="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picture_of_the_day_fl"
             tools:context=".overview.OverviewFragment"
             tools:itemCount="16"
             tools:listitem="@layout/asteroid_item" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progressTint="#8BC34A"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

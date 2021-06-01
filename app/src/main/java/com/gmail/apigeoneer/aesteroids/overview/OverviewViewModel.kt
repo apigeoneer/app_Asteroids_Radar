@@ -3,10 +3,11 @@ package com.gmail.apigeoneer.aesteroids.overview
 import android.app.Application
 import android.util.Log
 import androidx.lifecycle.*
-import com.gmail.apigeoneer.aesteroids.api.API_KEY
-import com.gmail.apigeoneer.aesteroids.api.AsteroidApi
-import com.gmail.apigeoneer.aesteroids.api.parseAsteroidsJsonResult
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
+import com.gmail.apigeoneer.aesteroids.network.API_KEY
+import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
+import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
+import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -27,9 +28,19 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     val asteroid: LiveData<List<Asteroid>>
         get() = _asteroids
 
+    // for navigating to the detail screen
+    private val _navigateToSelectedAsteroid = MutableLiveData<Asteroid>()
+    val navigateToSelectedAsteroid: LiveData<Asteroid>
+        get() = _navigateToSelectedAsteroid
+
+    private val _pictureOfTheDay = MutableLiveData<PictureOfTheDay>()
+    val pictureOfTheDay: LiveData<PictureOfTheDay>
+        get() = _pictureOfTheDay
+
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
         getAsteroids()
+        getPictureOfTheDay()
     }
 
     /**
@@ -53,7 +64,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
         viewModelScope.launch {
             try {
-                val listResult = AsteroidApi.retrofitService.getAsteroids("2021-05-05", "2021-05-06", API_KEY)   // 2021-5-5 WRONG, 2021-05-05 RIGHT
+                val listResult = AsteroidApi.asteroidService.getAsteroids("2021-05-05", "2021-05-06", API_KEY)   // 2021-5-5 WRONG, 2021-05-05 RIGHT
                 _status.value = "Success: ${listResult.length} Asteroids retrieved"
 //                val listResultJSON = JSONObject(listResult)
 //                val asteroidList: ArrayList<Asteroid> = parseAsteroidsJsonResult(listResultJSON)
@@ -71,13 +82,35 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    class Factory(val app: Application) : ViewModelProvider.Factory {
+    // initiate navigation to the detail screen
+    fun displayAsteroidDetails(asteroid: Asteroid) {
+        _navigateToSelectedAsteroid.value = asteroid
+    }
+
+    fun displayAsteroidDetailsComplete() {
+        _navigateToSelectedAsteroid.value = null
+    }
+
+    private fun getPictureOfTheDay() {
+
+        viewModelScope.launch {
+            try {
+                val pictureOfTheDay = AsteroidApi.pictureOdTheDayService.getPictureOfTheDay(API_KEY)
+                _pictureOfTheDay.value = pictureOfTheDay
+                Log.d(TAG, pictureOfTheDay.url)
+            } catch (e: Exception) {
+                Log.d(TAG, "PictureOfTheDay retrieval unsuccessful: ${e.message}")
+            }
+        }
+    }
+
+    class OverviewViewModelFactory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(OverviewViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
                 return OverviewViewModel(app) as T
             }
-            throw IllegalArgumentException("Unable to construct viewmodel")
+            throw IllegalArgumentException("Unable to construct ViewModel")
         }
     }
 

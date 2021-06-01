@@ -18,14 +18,8 @@ class OverviewFragment : Fragment() {
 
     // lazily initialize our [OverviewViewModel]
     private val overviewViewModel: OverviewViewModel by lazy {
-        ViewModelProvider(this, OverviewViewModel.Factory(requireActivity().application))
+        ViewModelProvider(this, OverviewViewModel.OverviewViewModelFactory(requireActivity().application))
             .get(OverviewViewModel::class.java)
-    }
-
-    // lazily initialize our [DetailViewModel]
-    private val detailViewModel: DetailViewModel by lazy {
-        ViewModelProvider(this, DetailViewModel.Factory(requireActivity().application))
-                .get(DetailViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -42,19 +36,27 @@ class OverviewFragment : Fragment() {
         binding.viewModel = overviewViewModel
 
         binding.asteroidsRv.adapter = AsteroidAdapter(AsteroidAdapter.OnClickListener {
-            detailViewModel.displayAsteroidDetails(it)
+            overviewViewModel.displayAsteroidDetails(it)
         })
 
         // this observer calls navigate() to go to the detail screen when the MarsProperty is not null
-        detailViewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
+        overviewViewModel.navigateToSelectedAsteroid.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
-                detailViewModel.displayAsteroidDetailsComplete()
+                overviewViewModel.displayAsteroidDetailsComplete()
             }
         })
 
+        binding.progressBar.visibility = View.VISIBLE
+
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

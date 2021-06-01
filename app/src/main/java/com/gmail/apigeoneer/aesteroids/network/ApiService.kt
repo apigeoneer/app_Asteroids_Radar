@@ -1,12 +1,9 @@
-package com.gmail.apigeoneer.aesteroids.api
+package com.gmail.apigeoneer.aesteroids.network
 
 import com.gmail.apigeoneer.aesteroids.Constants.BASE_URL
-import com.gmail.apigeoneer.aesteroids.data.Asteroid
-import com.gmail.apigeoneer.aesteroids.data.AsteroidData
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -25,7 +22,13 @@ interface AsteroidApiService {
             @Query("end_date") endDate: String,
             @Query("api_key") apiKey: String
     ): String
+}
 
+interface PictureOdTheDayService {
+    // https://api.nasa.gov/planetary/apod?api_key=YOUR_API_KEY
+
+    @GET("planetary/apod")
+    suspend fun getPictureOfTheDay(@Query("api_key") apiKey: String): PictureOfTheDay
 }
 
 //  Create a Moshi object
@@ -47,7 +50,11 @@ private val retrofit = Retrofit.Builder()
  * we'll just create 1 instance (ie. here) & use it everywhere
  */
 object AsteroidApi {
-    val retrofitService: AsteroidApiService by lazy {
+    val asteroidService: AsteroidApiService by lazy {
         retrofit.create(AsteroidApiService::class.java)
+    }
+
+    val pictureOdTheDayService: PictureOdTheDayService by lazy {
+        retrofit.create(PictureOdTheDayService::class.java)
     }
 }
