@@ -1,4 +1,4 @@
-package com.gmail.apigeoneer.aesteroids.network.entities
+package com.gmail.apigeoneer.aesteroids.data.entities
 
 import android.os.Parcelable
 import androidx.room.Entity

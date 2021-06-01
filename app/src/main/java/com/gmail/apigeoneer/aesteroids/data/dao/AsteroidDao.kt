@@ -1,8 +1,8 @@
-package com.gmail.apigeoneer.aesteroids.network.dao
+package com.gmail.apigeoneer.aesteroids.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.gmail.apigeoneer.aesteroids.network.entities.AsteroidEntity
+import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
 
 @Dao
 interface AsteroidDao {

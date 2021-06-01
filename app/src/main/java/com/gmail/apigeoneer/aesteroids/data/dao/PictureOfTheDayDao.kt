@@ -1,11 +1,11 @@
-package com.gmail.apigeoneer.aesteroids.network.dao
+package com.gmail.apigeoneer.aesteroids.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gmail.apigeoneer.aesteroids.network.entities.PictureOfTheDayEntity
+import com.gmail.apigeoneer.aesteroids.data.entities.PictureOfTheDayEntity
 
 @Dao
 interface PictureOfTheDayDao {

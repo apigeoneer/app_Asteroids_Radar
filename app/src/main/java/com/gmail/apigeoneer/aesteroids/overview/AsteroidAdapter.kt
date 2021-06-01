@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.databinding.AsteroidItemBinding
 
 class AsteroidAdapter(

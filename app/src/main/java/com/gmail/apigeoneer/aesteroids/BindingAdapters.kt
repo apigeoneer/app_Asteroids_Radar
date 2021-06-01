@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.overview.AsteroidAdapter
 import com.squareup.picasso.Picasso
 

@@ -6,8 +6,8 @@ import androidx.lifecycle.*
 import com.gmail.apigeoneer.aesteroids.network.API_KEY
 import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
 import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
-import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
-import com.gmail.apigeoneer.aesteroids.network.domain.PictureOfTheDay
+import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 

@@ -1,7 +1,7 @@
 package com.gmail.apigeoneer.aesteroids.network
 
 import com.gmail.apigeoneer.aesteroids.Constants.BASE_URL
-import com.gmail.apigeoneer.aesteroids.network.domain.PictureOfTheDay
+import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit

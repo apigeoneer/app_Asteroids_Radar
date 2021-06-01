@@ -1,17 +1,17 @@
-package com.gmail.apigeoneer.aesteroids.network
+package com.gmail.apigeoneer.aesteroids.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.gmail.apigeoneer.aesteroids.network.dao.AsteroidDao
-import com.gmail.apigeoneer.aesteroids.network.dao.PictureOfTheDayDao
+import com.gmail.apigeoneer.aesteroids.data.dao.AsteroidDao
+import com.gmail.apigeoneer.aesteroids.data.dao.PictureOfTheDayDao
 
 /**
  * The Room Database class puts together the Entity & the Dao
  */
-@Database(entities = [MyDatabase::class], version = 1)
-abstract class MyDatabase: RoomDatabase() {
+@Database(entities = [AsteroidsDatabase::class], version = 1)
+abstract class AsteroidsDatabase: RoomDatabase() {
     abstract val asteroidDao: AsteroidDao
     abstract val pictureOfTheDayDao: PictureOfTheDayDao
 }
@@ -22,15 +22,15 @@ abstract class MyDatabase: RoomDatabase() {
  */
 
 // var for our singleton
-private lateinit var INSTANCE: MyDatabase
+private lateinit var INSTANCE: AsteroidsDatabase
 
-fun getDatabase(context: Context): MyDatabase {
+fun getDatabase(context: Context): AsteroidsDatabase {
     // Made code synchronized so its thread safe
-    synchronized(MyDatabase::class.java) {
+    synchronized(AsteroidsDatabase::class.java) {
         // Check whether the database has been initialized
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
-            MyDatabase::class.java,
+                    AsteroidsDatabase::class.java,
             "asteroids").build()
         }
     }

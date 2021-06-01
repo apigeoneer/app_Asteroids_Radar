@@ -1,7 +1,7 @@
 package com.gmail.apigeoneer.aesteroids.network
 
 import com.gmail.apigeoneer.aesteroids.Constants
-import com.gmail.apigeoneer.aesteroids.network.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*

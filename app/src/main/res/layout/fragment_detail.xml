@@ -11,7 +11,7 @@
 
         <variable
             name="asteroid"
-            type="com.gmail.apigeoneer.aesteroids.network.domain.Asteroid" />
+            type="com.gmail.apigeoneer.aesteroids.data.domain.Asteroid" />
     </data>
 
     <ScrollView

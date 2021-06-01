@@ -1,4 +1,4 @@
-package com.gmail.apigeoneer.aesteroids.network.domain
+package com.gmail.apigeoneer.aesteroids.data.domain
 
 import com.squareup.moshi.Json
 
