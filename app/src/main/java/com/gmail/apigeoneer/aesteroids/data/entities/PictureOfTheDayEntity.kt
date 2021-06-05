@@ -9,7 +9,8 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class PictureOfTheDayEntity(
         @PrimaryKey(autoGenerate = true)
-        val url: String,
+        val id: Long = 0L,                           // Created to use as the primary key
+        val url: String,                             // primary key can't be a String
         val mediaType: String,
         val title: String
 ) : Parcelable
