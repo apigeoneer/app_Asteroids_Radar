@@ -2,6 +2,7 @@ package com.gmail.apigeoneer.aesteroids.data.repositories
 
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
@@ -11,9 +12,7 @@ import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
 import com.gmail.apigeoneer.aesteroids.data.toDatabaseModel
 import com.gmail.apigeoneer.aesteroids.data.toDomainModel
-import com.gmail.apigeoneer.aesteroids.network.API_KEY
-import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
-import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
+import com.gmail.apigeoneer.aesteroids.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -21,6 +20,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities
 
 class AsteroidRepository(private val database: AsteroidsDatabase) {
 
@@ -50,14 +50,15 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
          * Then call insertAll() to insert the asteroids into the database.
          * * -> spread operator: allows you to pass in an array to a fun that expects varargs.
          */
-        val startDateFormatted = "2021-06-05"
-        val endDateFormatted = "2021-06-12"
+        val startDateFormatted = getFormattedToday()
+        val endDateFormatted = getFormattedSeventhDay()
+
         withContext(Dispatchers.IO) {
             // String: return type of the getAsteroids() function
             val asteroidsList = AsteroidApi.asteroidService
-                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY)        // await gives error. error w/o await.
+                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY)        // await gives error
 
-            // String -> ArrayList<Asteroid>
+            // String -> List<Asteroid>
             val parsedAsteroidsList = parseAsteroidsJsonResult(JSONObject(asteroidsList))
             database.asteroidDao.insertAll(*parsedAsteroidsList.toDatabaseModel())
         }

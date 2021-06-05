@@ -1,5 +1,6 @@
 package com.gmail.apigeoneer.aesteroids.network
 
+import android.annotation.SuppressLint
 import com.gmail.apigeoneer.aesteroids.Constants
 import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import org.json.JSONObject
@@ -90,6 +91,7 @@ fun parseAsteroidsJsonResult(jsonObject: JSONObject): List<Asteroid> {
     return asteroidList
 }
 
+@SuppressLint("WeekBasedYear")
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
     val formattedDateList = ArrayList<String>()
 
@@ -100,6 +102,20 @@ private fun getNextSevenDaysFormattedDates(): ArrayList<String> {
         formattedDateList.add(dateFormat.format(currentTime))
         calendar.add(Calendar.DAY_OF_YEAR, 1)
     }
-
     return formattedDateList
+}
+
+@SuppressLint("WeekBasedYear")
+fun getFormattedToday(): String {
+    val calendar = Calendar.getInstance()
+    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return dateFormat.format(calendar.time)
+}
+
+@SuppressLint("WeekBasedYear")
+fun getFormattedSeventhDay(): String {
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DAY_OF_YEAR, 7)
+    val dateFormat = SimpleDateFormat(Constants.API_QUERY_DATE_FORMAT, Locale.getDefault())
+    return dateFormat.format(calendar.time)
 }
