@@ -23,6 +23,6 @@
             app:destination="@id/overviewFragment" />
         <argument
             android:name="selectedAsteroid"
-            app:argType="com.gmail.apigeoneer.aesteroids.data.Asteroid" />
+            app:argType="com.gmail.apigeoneer.aesteroids.data.domain.Asteroid" />
     </fragment>
 </navigation>

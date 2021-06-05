@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.gmail.apigeoneer.aesteroids.R
 import com.gmail.apigeoneer.aesteroids.databinding.FragmentOverviewBinding
-import com.gmail.apigeoneer.aesteroids.detail.DetailViewModel
 
 class OverviewFragment : Fragment() {
 
