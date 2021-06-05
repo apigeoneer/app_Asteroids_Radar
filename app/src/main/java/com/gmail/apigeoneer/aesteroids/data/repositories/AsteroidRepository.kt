@@ -1,17 +1,32 @@
 package com.gmail.apigeoneer.aesteroids.data.repositories
 
-import android.net.Network
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import com.gmail.apigeoneer.aesteroids.Constants
 import com.gmail.apigeoneer.aesteroids.data.AsteroidsDatabase
 import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
+import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
+import com.gmail.apigeoneer.aesteroids.data.toDatabaseModel
+import com.gmail.apigeoneer.aesteroids.data.toDomainModel
+import com.gmail.apigeoneer.aesteroids.network.API_KEY
+import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
+import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AsteroidRepository(private val database: AsteroidsDatabase) {
+
+    companion object {
+        private const val TAG = "AsteroidRepository"
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val startDate = LocalDate.now()
@@ -27,6 +42,7 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             it.toDomainModel()
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun refreshAsteroids() {
         /**
          * Make a network call to getAsteroids(), & use the await() function
@@ -37,9 +53,13 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
         val startDateFormatted = "2021-06-05"
         val endDateFormatted = "2021-06-12"
         withContext(Dispatchers.IO) {
-            val asteroidsList = Network.(
-                startDateFormatted, endDateFormatted).await()
-            database.asteroidDao.insertAll(*asteroidsList.toDatabaseModel())
+            // String: return type of the getAsteroids() function
+            val asteroidsList = AsteroidApi.asteroidService
+                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY)        // await gives error. error w/o await.
+
+            // String -> ArrayList<Asteroid>
+            val parsedAsteroidsList = parseAsteroidsJsonResult(JSONObject(asteroidsList))
+            database.asteroidDao.insertAll(*parsedAsteroidsList.toDatabaseModel())
         }
     }
 
