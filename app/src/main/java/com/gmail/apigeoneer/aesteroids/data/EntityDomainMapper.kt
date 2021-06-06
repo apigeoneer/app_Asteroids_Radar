@@ -5,7 +5,7 @@ import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
 import com.gmail.apigeoneer.aesteroids.data.entities.PictureOfTheDayEntity
 
-fun ArrayList<Asteroid>.toDatabaseModel(): Array<AsteroidEntity>{
+fun List<Asteroid>.toDatabaseModel(): Array<AsteroidEntity>{
 
     return map{
         AsteroidEntity(
