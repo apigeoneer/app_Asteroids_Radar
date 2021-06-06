@@ -1,26 +1,18 @@
 package com.gmail.apigeoneer.aesteroids.data.repositories
 
 import android.os.Build
-import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.gmail.apigeoneer.aesteroids.Constants
 import com.gmail.apigeoneer.aesteroids.data.AsteroidsDatabase
 import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
-import com.gmail.apigeoneer.aesteroids.data.entities.AsteroidEntity
 import com.gmail.apigeoneer.aesteroids.data.toDatabaseModel
 import com.gmail.apigeoneer.aesteroids.data.toDomainModel
 import com.gmail.apigeoneer.aesteroids.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.reflect.jvm.internal.impl.descriptors.Visibilities
 
 class AsteroidRepository(private val database: AsteroidsDatabase) {
 
@@ -56,7 +48,7 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
         withContext(Dispatchers.IO) {
             // String: return type of the getAsteroids() function
             val asteroidsList = AsteroidApi.asteroidService
-                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY)        // await gives error
+                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY).await()        // await gives error
 
             // String -> List<Asteroid>
             val parsedAsteroidsList = parseAsteroidsJsonResult(JSONObject(asteroidsList))
