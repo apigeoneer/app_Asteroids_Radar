@@ -20,7 +20,7 @@ class PictureOfTheDayRepository(private val database: AsteroidsDatabase) {
 
     val pictureOfTheDay: LiveData<PictureOfTheDay> =
         Transformations.map(database.pictureOfTheDayDao.getPictureOfTheDay()) {
-            it.toDomainModel()
+            it?.toDomainModel()
         }
 
     suspend fun refreshPictureOfTheDay() {
