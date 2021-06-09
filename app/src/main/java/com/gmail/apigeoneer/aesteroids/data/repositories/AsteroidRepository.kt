@@ -20,12 +20,6 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
         private const val TAG = "AsteroidRepository"
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val startDate = LocalDate.now()
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val endDate = startDate.plusDays(7)
-
     // Convert your LiveData list of DatabaseVideo objects to domain Video objects
     @RequiresApi(Build.VERSION_CODES.O)
     val asteroids: LiveData<List<Asteroid>> = Transformations
