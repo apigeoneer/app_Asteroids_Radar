@@ -31,7 +31,7 @@ interface PictureOdTheDayService {
     // https://api.nasa.gov/planetary/apod?api_key=YOUR_API_KEY
 
     @GET("planetary/apod")
-    suspend fun getPictureOfTheDay(@Query("api_key") apiKey: String): PictureOfTheDay
+    fun getPictureOfTheDayAsync(@Query("api_key") apiKey: String): Deferred<PictureOfTheDay>
 }
 
 //  Create a Moshi object

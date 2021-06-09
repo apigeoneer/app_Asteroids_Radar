@@ -41,7 +41,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
 
         withContext(Dispatchers.IO) {
             // String: return type of the getAsteroids() function
-            val asteroidsList = AsteroidApi.asteroidService.getAsteroidsAsync(startDateFormatted, endDateFormatted, API_KEY).await()
+            val asteroidsList = AsteroidApi.asteroidService
+                .getAsteroidsAsync(startDateFormatted, endDateFormatted, API_KEY).await()
                                            // await gives error (it isn't needed i/s a suspend fun)    ???
 
             // String -> List<Asteroid>

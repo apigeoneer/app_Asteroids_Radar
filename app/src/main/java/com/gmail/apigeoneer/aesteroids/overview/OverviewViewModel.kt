@@ -12,6 +12,7 @@ import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
 import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.gmail.apigeoneer.aesteroids.data.getDatabase
 import com.gmail.apigeoneer.aesteroids.data.repositories.AsteroidRepository
+import com.gmail.apigeoneer.aesteroids.data.repositories.PictureOfTheDayRepository
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -25,6 +26,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 
     private val database = getDatabase(application)
     private val asteroidRepository = AsteroidRepository(database)
+    private val pictureOfTheDayRepository = PictureOfTheDayRepository(database)
 
     // the internal MutableLiveData String that stores the status of the most recent requests
     // response -> the request status String
@@ -41,17 +43,21 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     val navigateToSelectedAsteroid: LiveData<Asteroid>
         get() = _navigateToSelectedAsteroid
 
-    private val _pictureOfTheDay = MutableLiveData<PictureOfTheDay>()
-    val pictureOfTheDay: LiveData<PictureOfTheDay>
-        get() = _pictureOfTheDay
+//    private val _pictureOfTheDay = MutableLiveData<PictureOfTheDay>()
+//    val pictureOfTheDay: LiveData<PictureOfTheDay>
+//        get() = _pictureOfTheDay
 
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
 //        getAsteroids()
-          getPictureOfTheDay()
+//          getPictureOfTheDay()
 
         viewModelScope.launch {
             asteroidRepository.refreshAsteroids()
+        }
+
+        viewModelScope.launch {
+            pictureOfTheDayRepository.refreshPictureOfTheDay()
         }
     }
 
@@ -95,6 +101,7 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 //    }
 
     val asteroid = asteroidRepository.asteroids
+    val pictureOfTheDay = pictureOfTheDayRepository.pictureOfTheDay
 
     // initiate navigation to the detail screen
     fun displayAsteroidDetails(asteroid: Asteroid) {
@@ -105,18 +112,18 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
         _navigateToSelectedAsteroid.value = null
     }
 
-    private fun getPictureOfTheDay() {
-
-        viewModelScope.launch {
-            try {
-                val pictureOfTheDay = AsteroidApi.pictureOdTheDayService.getPictureOfTheDay(API_KEY)
-                _pictureOfTheDay.value = pictureOfTheDay
-                Log.d(TAG, pictureOfTheDay.url)
-            } catch (e: Exception) {
-                Log.d(TAG, "PictureOfTheDay retrieval unsuccessful: ${e.message}")
-            }
-        }
-    }
+//    private fun getPictureOfTheDay() {
+//
+//        viewModelScope.launch {
+//            try {
+//                val pictureOfTheDay = AsteroidApi.pictureOdTheDayService.getPictureOfTheDay(API_KEY)
+//                _pictureOfTheDay.value = pictureOfTheDay
+//                Log.d(TAG, pictureOfTheDay.url)
+//            } catch (e: Exception) {
+//                Log.d(TAG, "PictureOfTheDay retrieval unsuccessful: ${e.message}")
+//            }
+//        }
+//    }
 
     class OverviewViewModelFactory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
