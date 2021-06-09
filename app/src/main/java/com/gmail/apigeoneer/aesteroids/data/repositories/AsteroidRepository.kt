@@ -29,8 +29,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
     // Convert your LiveData list of DatabaseVideo objects to domain Video objects
     @RequiresApi(Build.VERSION_CODES.O)
     val asteroids: LiveData<List<Asteroid>> = Transformations
-        .map(database.asteroidDao.getAsteroids(
-            startDate.toString(), endDate.toString())) {
+        .map(database.asteroidDao.getAsteroids()
+        ) {
             it.toDomainModel()
         }
 
@@ -47,8 +47,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
 
         withContext(Dispatchers.IO) {
             // String: return type of the getAsteroids() function
-            val asteroidsList = AsteroidApi.asteroidService
-                .getAsteroids(startDateFormatted, endDateFormatted, API_KEY).await()        // await gives error
+            val asteroidsList = AsteroidApi.asteroidService.getAsteroidsAsync(startDateFormatted, endDateFormatted, API_KEY).await()
+                                           // await gives error (it isn't needed i/s a suspend fun)    ???
 
             // String -> List<Asteroid>
             val parsedAsteroidsList = parseAsteroidsJsonResult(JSONObject(asteroidsList))

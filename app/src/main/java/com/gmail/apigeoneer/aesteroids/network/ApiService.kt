@@ -4,6 +4,7 @@ import com.gmail.apigeoneer.aesteroids.Constants.BASE_URL
 import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
@@ -19,10 +20,10 @@ interface AsteroidApiService {
 
     // @GET -> specifying the endpoint for the JSON Asteroid response
     @GET("neo/rest/v1/feed")
-    suspend fun getAsteroids(@Query("start_date") startDate: String,
-                             @Query("end_date") endDate: String,
-                             @Query("api_key") apiKey: String
-    ): String
+    suspend fun getAsteroidsAsync(@Query("start_date") startDate: String,
+                                  @Query("end_date") endDate: String,
+                                  @Query("api_key") apiKey: String
+    ): Deferred<String>             // To use await() on a method, the return type for that method should be of type Deferred<T>
 }
 
 interface PictureOdTheDayService {
