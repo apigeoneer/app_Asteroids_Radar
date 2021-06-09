@@ -48,14 +48,12 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
     // Call getMarsRealEstateProperties() on init so we can display status immediately
     init {
 //        getAsteroids()
-//        getPictureOfTheDay()
+          getPictureOfTheDay()
 
         viewModelScope.launch {
             asteroidRepository.refreshAsteroids()
         }
     }
-
-    val asteroids = asteroidRepository.asteroids
 
 //    /**
 //     * Sets the value of the status LiveData to the NASA Asteroid API status
@@ -95,6 +93,8 @@ class OverviewViewModel(application: Application): AndroidViewModel(application)
 //            Log.d(TAG, _status.toString())
 //        }
 //    }
+
+    val asteroid = asteroidRepository.asteroids
 
     // initiate navigation to the detail screen
     fun displayAsteroidDetails(asteroid: Asteroid) {

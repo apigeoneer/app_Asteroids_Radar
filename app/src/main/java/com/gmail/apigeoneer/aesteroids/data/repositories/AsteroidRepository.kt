@@ -29,8 +29,7 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
     // Convert your LiveData list of DatabaseVideo objects to domain Video objects
     @RequiresApi(Build.VERSION_CODES.O)
     val asteroids: LiveData<List<Asteroid>> = Transformations
-        .map(database.asteroidDao.getAsteroids(
-            startDate.toString(), endDate.toString())
+        .map(database.asteroidDao.getAsteroids()
         ) {
             it.toDomainModel()
         }
