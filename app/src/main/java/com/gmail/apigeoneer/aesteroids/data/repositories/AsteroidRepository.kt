@@ -12,19 +12,11 @@ import com.gmail.apigeoneer.aesteroids.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.time.LocalDate
 
+/**
+ * Repository for fetching asteroids from the Network & storing them on disk.
+ */
 class AsteroidRepository(private val database: AsteroidsDatabase) {
-
-    companion object {
-        private const val TAG = "AsteroidRepository"
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val startDate = LocalDate.now()
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private val endDate = startDate.plusDays(7)
 
     // Convert your LiveData list of DatabaseVideo objects to domain Video objects
     @RequiresApi(Build.VERSION_CODES.O)
@@ -34,6 +26,9 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             it.toDomainModel()
         }
 
+    /**
+     * Update the offline cache
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun refreshAsteroids() {
         /**
@@ -47,7 +42,8 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
 
         withContext(Dispatchers.IO) {
             // String: return type of the getAsteroids() function
-            val asteroidsList = AsteroidApi.asteroidService.getAsteroidsAsync(startDateFormatted, endDateFormatted, API_KEY).await()
+            val asteroidsList = AsteroidApi.asteroidService
+                .getAsteroidsAsync(startDateFormatted, endDateFormatted, API_KEY).await()
                                            // await gives error (it isn't needed i/s a suspend fun)    ???
 
             // String -> List<Asteroid>

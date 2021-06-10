@@ -2,6 +2,7 @@ package com.gmail.apigeoneer.aesteroids.network
 
 import com.gmail.apigeoneer.aesteroids.Constants.BASE_URL
 import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
@@ -10,7 +11,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
-import java.time.LocalDate
 
 private const val URL = BASE_URL                                   // make sure the base url is the base url. don't play w/ it & start appending all kinds of stupid things
 const val API_KEY = "9U2n06m8hLP7vkIucT8MUW7bcQVtzukDdAvYyOnl"
@@ -20,7 +20,7 @@ interface AsteroidApiService {
 
     // @GET -> specifying the endpoint for the JSON Asteroid response
     @GET("neo/rest/v1/feed")
-    suspend fun getAsteroidsAsync(@Query("start_date") startDate: String,
+    fun getAsteroidsAsync(@Query("start_date") startDate: String,
                                   @Query("end_date") endDate: String,
                                   @Query("api_key") apiKey: String
     ): Deferred<String>             // To use await() on a method, the return type for that method should be of type Deferred<T>
@@ -30,7 +30,7 @@ interface PictureOdTheDayService {
     // https://api.nasa.gov/planetary/apod?api_key=YOUR_API_KEY
 
     @GET("planetary/apod")
-    suspend fun getPictureOfTheDay(@Query("api_key") apiKey: String): PictureOfTheDay
+    fun getPictureOfTheDayAsync(@Query("api_key") apiKey: String): Deferred<PictureOfTheDay>
 }
 
 //  Create a Moshi object
@@ -43,6 +43,7 @@ private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())                     // for the Asteroids
     .addConverterFactory(MoshiConverterFactory.create(moshi))                  // for the ImageOfDay
     // .addCallAdapterFactory(CoroutineCallAdapterFactory())                   // for Coroutines                   // depreciated
+    .addCallAdapterFactory(CoroutineCallAdapterFactory())                      // needed since we're using Deferred
     .baseUrl(BASE_URL)
     .build()
 
