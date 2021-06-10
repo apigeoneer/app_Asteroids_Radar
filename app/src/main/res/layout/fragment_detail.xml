@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,6 +20,15 @@
         android:layout_height="match_parent"
         android:background="#111111"
         tools:context=".DetailFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,11 +64,11 @@
                 android:id="@+id/codename_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:textColor="#f5f5f5"
                 android:textSize="21sp"
                 android:textStyle="bold"
-                android:layout_marginTop="4dp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/isHazardous_tv"
@@ -68,9 +78,9 @@
                 android:id="@+id/closeApproachDate_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Close approach date"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:paddingLeft="8dp"
+                android:text="Close approach date"
                 android:textColor="#e5e5e5"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,10 +91,9 @@
                 android:id="@+id/closeApproachDateValue_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
-                android:paddingLeft="8dp"
-                android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/closeApproachDate_tv"
@@ -94,11 +103,11 @@
                 android:id="@+id/absMagnitude_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="Absolute magnitude"
                 android:textColor="#e5e5e5"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/closeApproachDateValue_tv" />
@@ -107,34 +116,34 @@
                 android:id="@+id/absMagnitudeValue_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
-                android:paddingLeft="8dp"
+                app:astronomicalUnitText="@{detailViewModel.selectedAsteroid.absMagnitude}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/absMagnitude_tv"
-                tools:text="16.480000"
-                app:astronomicalUnitText="@{detailViewModel.selectedAsteroid.absMagnitude}"/>
+                tools:text="16.480000" />
 
             <ImageView
                 android:id="@+id/help_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/absMagnitudeValue_tv"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/absMagnitude_tv"
-                app:layout_constraintBottom_toBottomOf="@+id/absMagnitudeValue_tv"
                 app:srcCompat="@drawable/ic_help" />
 
             <TextView
                 android:id="@+id/estDiaMax_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="Estimated maximum diameter"
                 android:textColor="#e5e5e5"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/absMagnitudeValue_tv" />
@@ -143,24 +152,24 @@
                 android:id="@+id/estDiaMaxValue_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
-                android:paddingLeft="8dp"
+                app:kmUnitText="@{detailViewModel.selectedAsteroid.estDiaMax}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/estDiaMax_tv"
-                tools:text="3.0063530383 km"
-                app:kmUnitText="@{detailViewModel.selectedAsteroid.estDiaMax}"/>
+                tools:text="3.0063530383 km" />
 
             <TextView
                 android:id="@+id/relativeVelocity_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="Relative velocity"
                 android:textColor="#e5e5e5"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/estDiaMaxValue_tv" />
@@ -169,24 +178,24 @@
                 android:id="@+id/relativeVelocityValue_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeVelocity_tv"
-                tools:text="14.77157427 km/s"
-                app:velocityText="@{detailViewModel.selectedAsteroid.relativeVelocity}"/>
+                app:velocityText="@{detailViewModel.selectedAsteroid.relativeVelocity}"
+                tools:text="14.77157427 km/s" />
 
             <TextView
                 android:id="@+id/distanceFromEarth_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
                 android:text="Distance from Earth"
                 android:textColor="#e5e5e5"
                 android:textStyle="bold"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeVelocityValue_tv" />
@@ -195,14 +204,14 @@
                 android:id="@+id/distanceFromEarthValue_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
-                android:paddingLeft="8dp"
+                app:kmUnitText="@{detailViewModel.selectedAsteroid.distanceFromEarth}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/distanceFromEarth_tv"
-                tools:text="0.49229903 km"
-                app:kmUnitText="@{detailViewModel.selectedAsteroid.distanceFromEarth}"/>
+                tools:text="0.49229903 km" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

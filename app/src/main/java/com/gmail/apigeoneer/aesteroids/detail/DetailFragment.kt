@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.apigeoneer.aesteroids.R
@@ -40,6 +41,8 @@ class DetailFragment : Fragment() {
         binding.helpIv.setOnClickListener {
             displayHelpExplanationDialog()
         }
+
+        setSupportActionBar()
 
         return binding.root
     }
