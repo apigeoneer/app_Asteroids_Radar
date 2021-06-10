@@ -21,30 +21,31 @@
         android:background="#111111"
         tools:context=".DetailFragment">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/my_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp">
 
             <ImageView
+                android:id="@+id/back_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+            <ImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
                 android:layout_height="266dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="Asteroid status image: hazardous or not"
                 android:scaleType="centerCrop"
                 app:asteroidStatusImage="@{asteroid.hazardous}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/back_iv"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView

@@ -38,11 +38,15 @@ class DetailFragment : Fragment() {
         binding.detailViewModel = ViewModelProvider(this,
             viewModelFactory).get(DetailViewModel::class.java)
 
+        // display a help info dialog on clicking the help (??) button
         binding.helpIv.setOnClickListener {
             displayHelpExplanationDialog()
         }
 
-        setSupportActionBar()
+        // navigate up
+        binding.backIv.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
 
         return binding.root
     }
