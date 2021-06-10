@@ -1,9 +1,8 @@
 package com.gmail.apigeoneer.aesteroids
 
 import android.app.Application
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import android.os.Build
+import androidx.work.*
 import com.gmail.apigeoneer.aesteroids.data.work.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,12 +27,26 @@ class AsteroidApplication: Application() {
         }
     }
 
-    // Refresh data once every day
+    /**
+     * Create a work request :
+     * Setup WorkManager b/g job to fetch new network data
+     *  daily.
+     */
     private fun setupRecurringWork() {
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.UNMETERED)
+            .setRequiresBatteryNotLow(true)
+            .setRequiresCharging(true)
+            .apply {
+                setRequiresDeviceIdle(true)
+            }
+            .build()
+
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWorker>(
             1,
             TimeUnit.DAYS
-        ).build()
+        ).setConstraints(constraints).build()
 
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshDataWorker.WORK_NAME,
