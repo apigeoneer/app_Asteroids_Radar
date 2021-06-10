@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import com.gmail.apigeoneer.aesteroids.data.AsteroidsDatabase
 import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.gmail.apigeoneer.aesteroids.data.toDatabaseModel
+import com.gmail.apigeoneer.aesteroids.data.toDomainModel
 import com.gmail.apigeoneer.aesteroids.network.API_KEY
 import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
 import kotlinx.coroutines.Dispatchers
