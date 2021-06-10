@@ -3,4 +3,7 @@
     <string name="astronomical_unit_format">%f au</string>
     <string name="km_unit_format">%f km</string>
     <string name="km_s_unit_format">%f km/s</string>
+
+    <string name="hazardous_text">Potentially Hazardous</string>
+    <string name="not_hazardous_text">Not Hazardous</string>
 </resources>

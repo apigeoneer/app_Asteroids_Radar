@@ -23,110 +23,178 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="#222222">
+            android:layout_margin="12dp">
 
             <ImageView
                 android:id="@+id/main_photo_image"
                 android:layout_width="0dp"
                 android:layout_height="266dp"
+                android:contentDescription="Asteroid status image: hazardous or not"
                 android:scaleType="centerCrop"
+                app:asteroidStatusImage="@{asteroid.hazardous}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic"
-                android:contentDescription="Asteroid status image: hazardous or not"
-                app:asteroidStatusImage="@{asteroid.hazardous}" />
+                tools:src="@tools:sample/backgrounds/scenic" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/isHazardous_tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginBottom="16dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="8dp"
+                android:textColor="#766496"
+                android:textSize="23sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/main_photo_image">
+                app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
+                tools:text="@{asteroid.hazardous ? @string/hazardous_text : @string/not_hazardous_text}" />
 
-                <TextView
-                    android:id="@+id/codename_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#f5f5f5"
-                    android:textSize="21sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/main_photo_image" />
+            <TextView
+                android:id="@+id/codename_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f5f5f5"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/isHazardous_tv"
+                tools:text="@{detailViewModel.selectedAsteroid.codeName}" />
 
-                <TextView
-                    android:id="@+id/closeApproachDate_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/codename_tv"
-                    tools:text="2021-06-10" />
+            <TextView
+                android:id="@+id/closeApproachDate_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Close approach date"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                android:textColor="#e5e5e5"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/codename_tv" />
 
-                <TextView
-                    android:id="@+id/absMagnitude_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/closeApproachDate_tv"
-                    tools:text="16.48" />
+            <TextView
+                android:id="@+id/closeApproachDateValue_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f9f9f9"
+                android:textSize="16.5sp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/closeApproachDate_tv"
+                tools:text="@{detailViewModel.selectedAsteroid.closeApproachDate}" />
 
-                <TextView
-                    android:id="@+id/estDiaMax_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/absMagnitude_tv"
-                    tools:text="3.0063530383" />
+            <TextView
+                android:id="@+id/absMagnitude_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Absolute magnitude"
+                android:textColor="#e5e5e5"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/closeApproachDateValue_tv" />
 
-                <TextView
-                    android:id="@+id/isHazardous_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/estDiaMax_tv"
-                    tools:text="false" />
+            <TextView
+                android:id="@+id/absMagnitudeValue_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f9f9f9"
+                android:textSize="16.5sp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/absMagnitude_tv"
+                tools:text="@{`` + detailViewModel.selectedAsteroid.absMagnitude}" />
 
-                <TextView
-                    android:id="@+id/relativeVelocity_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/isHazardous_tv"
-                    tools:text="14.77157427" />
+            <ImageView
+                android:id="@+id/help_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/closeApproachDateValue_tv"
+                app:srcCompat="@drawable/ic_help" />
 
-                <TextView
-                    android:id="@+id/distanceFromEarth_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="#f9f9f9"
-                    android:textSize="15sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/relativeVelocity_tv"
-                    tools:text="0.49229903" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/estDiaMax_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estimated maximum diameter"
+                android:textColor="#e5e5e5"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/absMagnitudeValue_tv" />
+
+            <TextView
+                android:id="@+id/estDiaMaxValue_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f9f9f9"
+                android:textSize="16.5sp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/estDiaMax_tv"
+                tools:text="@{`` + detailViewModel.selectedAsteroid.estDiaMax}" />
+
+            <TextView
+                android:id="@+id/relativeVelocity_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Relative velocity"
+                android:textColor="#e5e5e5"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/estDiaMaxValue_tv" />
+
+            <TextView
+                android:id="@+id/relativeVelocityValue_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f9f9f9"
+                android:textSize="16.5sp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeVelocity_tv"
+                tools:text="@{`` + detailViewModel.selectedAsteroid.relativeVelocity}" />
+
+            <TextView
+                android:id="@+id/distanceFromEarth_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Distance from Earth"
+                android:textColor="#e5e5e5"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeVelocityValue_tv" />
+
+            <TextView
+                android:id="@+id/distanceFromEarthValue_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#f9f9f9"
+                android:textSize="16.5sp"
+                android:paddingLeft="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/distanceFromEarth_tv"
+                tools:text="@{`` + detailViewModel.selectedAsteroid.distanceFromEarth}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
