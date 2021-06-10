@@ -57,6 +57,7 @@
                 android:textColor="#f5f5f5"
                 android:textSize="21sp"
                 android:textStyle="bold"
+                android:layout_marginTop="4dp"
                 android:paddingLeft="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
