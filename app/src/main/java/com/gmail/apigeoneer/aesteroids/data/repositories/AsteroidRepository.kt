@@ -12,13 +12,11 @@ import com.gmail.apigeoneer.aesteroids.network.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
-import java.time.LocalDate
 
+/**
+ * Repository for fetching asteroids from the Network & storing them on disk.
+ */
 class AsteroidRepository(private val database: AsteroidsDatabase) {
-
-    companion object {
-        private const val TAG = "AsteroidRepository"
-    }
 
     // Convert your LiveData list of DatabaseVideo objects to domain Video objects
     @RequiresApi(Build.VERSION_CODES.O)
@@ -28,6 +26,9 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
             it.toDomainModel()
         }
 
+    /**
+     * Update the offline cache
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     suspend fun refreshAsteroids() {
         /**

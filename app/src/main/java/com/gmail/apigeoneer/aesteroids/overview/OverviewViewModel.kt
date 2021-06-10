@@ -2,19 +2,13 @@ package com.gmail.apigeoneer.aesteroids.overview
 
 import android.app.Application
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.*
-import com.gmail.apigeoneer.aesteroids.network.API_KEY
-import com.gmail.apigeoneer.aesteroids.network.AsteroidApi
-import com.gmail.apigeoneer.aesteroids.network.parseAsteroidsJsonResult
 import com.gmail.apigeoneer.aesteroids.data.domain.Asteroid
-import com.gmail.apigeoneer.aesteroids.data.domain.PictureOfTheDay
 import com.gmail.apigeoneer.aesteroids.data.getDatabase
 import com.gmail.apigeoneer.aesteroids.data.repositories.AsteroidRepository
 import com.gmail.apigeoneer.aesteroids.data.repositories.PictureOfTheDayRepository
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 
 @RequiresApi(Build.VERSION_CODES.O)
