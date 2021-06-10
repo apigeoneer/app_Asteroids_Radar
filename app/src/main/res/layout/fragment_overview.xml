@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#111111"
-                android:contentDescription="NASA picture of the day"
+                android:contentDescription="@string/nasa_picture_of_the_day_image"
                 android:scaleType="centerCrop"
                 app:url="@{viewModel.pictureOfTheDay.url}" />
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="bottom"
                 android:padding="16dp"
-                android:text="Picture Of The Day"
+                android:text="@string/picture_of_the_day_text"
                 android:textSize="15sp" />
         </FrameLayout>
 
