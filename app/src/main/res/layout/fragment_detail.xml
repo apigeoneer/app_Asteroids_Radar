@@ -84,6 +84,7 @@
                 android:textColor="#f9f9f9"
                 android:textSize="16.5sp"
                 android:paddingLeft="8dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/closeApproachDate_tv"
@@ -112,7 +113,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/absMagnitude_tv"
-                tools:text="@{`` + detailViewModel.selectedAsteroid.absMagnitude}" />
+                tools:text="16.480000"
+                app:astronomicalUnitText="@{detailViewModel.selectedAsteroid.absMagnitude}"/>
 
             <ImageView
                 android:id="@+id/help_iv"
@@ -147,7 +149,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/estDiaMax_tv"
-                tools:text="@{`` + detailViewModel.selectedAsteroid.estDiaMax}" />
+                tools:text="3.0063530383 km"
+                app:kmUnitText="@{detailViewModel.selectedAsteroid.estDiaMax}"/>
 
             <TextView
                 android:id="@+id/relativeVelocity_tv"
@@ -172,7 +175,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeVelocity_tv"
-                tools:text="@{`` + detailViewModel.selectedAsteroid.relativeVelocity}" />
+                tools:text="14.77157427 km/s"
+                app:velocityText="@{detailViewModel.selectedAsteroid.relativeVelocity}"/>
 
             <TextView
                 android:id="@+id/distanceFromEarth_tv"
@@ -197,7 +201,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/distanceFromEarth_tv"
-                tools:text="@{`` + detailViewModel.selectedAsteroid.distanceFromEarth}" />
+                tools:text="0.49229903 km"
+                app:kmUnitText="@{detailViewModel.selectedAsteroid.distanceFromEarth}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
