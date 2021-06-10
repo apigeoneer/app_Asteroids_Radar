@@ -117,8 +117,10 @@
                 android:id="@+id/help_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/closeApproachDateValue_tv"
+                app:layout_constraintTop_toTopOf="@+id/absMagnitude_tv"
+                app:layout_constraintBottom_toBottomOf="@+id/absMagnitudeValue_tv"
                 app:srcCompat="@drawable/ic_help" />
 
             <TextView
