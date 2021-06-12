@@ -5,7 +5,7 @@
 
 ## About
 
-This app fetches live asteroid data from the internet using the NASA Neo API, along with the Picture of The Day using another NASA's API. It displays a list of all the asteroids  (marked hazardous or otherwise) approaching the earth in the next 7 days from the user's current date. On clicking on an asteroid item, the user is taken to the detail screen where s(he) can see the details about that asteroid.
+This app fetches live asteroid data from the internet using the NASA NeoWs API, along with the Picture of The Day using another NASA's API. It displays a list of all the asteroids  (marked hazardous or otherwise) approaching the earth in the next 7 days from the user's current date. On clicking on an asteroid item, the user is taken to the detail screen where s(he) can see the details about that asteroid.
 
 * Main screen
   - This screen reuses views using RecyclerView to display the list of the next 7 days' live asteroid data.
