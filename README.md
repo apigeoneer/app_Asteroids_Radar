@@ -1,4 +1,4 @@
 # Asteroid Radar app
 
 ## Demonstration
-<img src="https://user-images.githubusercontent.com/43718257/109408868-93c1f180-79b3-11eb-84f9-d588cca3202a.gif" width=240 height=460>
+<img src="https://user-images.githubusercontent.com/43718257/121768273-147bb680-cb7b-11eb-8098-2746d5743069.gif" width=240 height=460>
