@@ -13,7 +13,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val URL = BASE_URL                                   // make sure the base url is the base url. don't play w/ it & start appending all kinds of stupid things
-const val API_KEY = "9U2n06m8hLP7vkIucT8MUW7bcQVtzukDdAvYyOnl"
+const val API_KEY = "API_KEY"
 
 interface AsteroidApiService {
     // https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=DEMO_KEY
